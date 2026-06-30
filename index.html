@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>P8 Sheet Embed - Anzahl Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Contenedor visible: esto es lo que se ve en Notion.
+       Corta todo lo que se salga de estos bordes. */
+    .wrapper {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===========================================================
+       VALORES PARA AJUSTAR
+       ===========================================================
+
+       --zoom            -> escala TODO el contenido. 1 = 100%.
+                            Baja si la tabla es muy ancha/alta.
+
+       --crop-top        -> sube el iframe para tapar menú + toolbar
+       --crop-left       -> mueve a la izquierda para tapar columna de números
+
+       --iframe-height   -> ALTURA FIJA del iframe en px (clave para
+                            esconder los tabs de hojas de abajo).
+    */
+    :root {
+      --zoom: 0.90;
+      --crop-top: 167px;
+      --crop-left: 50px;
+      --iframe-height: 1600px;
+    }
+
+    iframe {
+      position: absolute;
+      border: none;
+      display: block;
+      top: 0;
+      left: 0;
+
+      width: calc(100% / var(--zoom));
+      height: var(--iframe-height);
+
+      transform-origin: top left;
+      transform:
+        scale(var(--zoom))
+        translate(calc(-1 * var(--crop-left)), calc(-1 * var(--crop-top)));
+    }
+
+    /* Overlay transparente que bloquea hover y clicks */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      background: transparent;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- gid de la hoja Anzahl_Dashboard -->
+    <iframe
+      src="https://docs.google.com/spreadsheets/d/1FB2a0IusIJT8_RkMwRzQZj_SaV-eRrSP7cnYKEyaEp8/edit#gid=1851149327"
+      allowfullscreen
+    ></iframe>
+    <div class="overlay"></div>
+  </div>
+</body>
+</html>
